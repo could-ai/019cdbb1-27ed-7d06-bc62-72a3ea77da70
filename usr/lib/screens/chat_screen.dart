@@ -16,7 +16,7 @@ class ChatScreen extends StatefulWidget {
 
 class _ChatScreenState extends State<ChatScreen> {
   final List<ChatMessage> _messages = [
-    ChatMessage(text: "TARS online. Awaiting input.", isUser: false),
+    ChatMessage(text: "KAWALE_AI online. Awaiting input.", isUser: false),
   ];
   final TextEditingController _controller = TextEditingController();
   bool _isListening = false;
@@ -34,7 +34,7 @@ class _ChatScreenState extends State<ChatScreen> {
     });
     _controller.clear();
     
-    // Mock TARS response (Backend not connected yet)
+    // Mock KAWALE_AI response (Backend not connected yet)
     Future.delayed(const Duration(seconds: 1), () {
       if (mounted) {
         setState(() {
@@ -56,12 +56,14 @@ class _ChatScreenState extends State<ChatScreen> {
       if (_humorLevel > 75) {
         return "Knock knock. Who's there? Not your sense of humor, apparently.";
       } else {
-        return "I am a robot, not a comedian. But I can try if you insist.";
+        return "I am an advanced AI, not a comedian. But I can try if you insist.";
       }
     } else if (lowerInput.contains('study') || lowerInput.contains('physics')) {
       return "Entering Study Mode. Newton's third law: For every action, there is an equal and opposite reaction. Much like my responses to your queries.";
     } else if (lowerInput.contains('mission')) {
-      return "Mission Mode activated. Calculating orbital mechanics... Just kidding, I'm just a UI mockup right now.";
+      return "Mission Mode activated. Calculating optimal pathways... Just kidding, I'm just a UI mockup right now.";
+    } else if (lowerInput.contains('creator') || lowerInput.contains('who made you')) {
+      return "I am KAWALE_AI, created by the brilliant Pratap Vijay Kawale.";
     }
     
     return "Processing query... As an AI, I am currently operating in a simulated environment without backend connectivity. Honesty parameter at ${_honestyLevel.toInt()}%.";
@@ -83,7 +85,7 @@ class _ChatScreenState extends State<ChatScreen> {
           setState(() {
             _isListening = false;
           });
-          _handleSubmitted("What is your status, TARS?");
+          _handleSubmitted("What is your status, KAWALE_AI?");
         }
       });
     }
@@ -111,7 +113,7 @@ class _ChatScreenState extends State<ChatScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('TARS'),
+        title: const Text('KAWALE_AI'),
         actions: [
           IconButton(
             icon: const Icon(Icons.tune),
@@ -131,7 +133,7 @@ class _ChatScreenState extends State<ChatScreen> {
               'MODE: ${_currentMode.toUpperCase()}',
               textAlign: TextAlign.center,
               style: const TextStyle(
-                color: Colors.amber,
+                color: Colors.cyanAccent,
                 fontWeight: FontWeight.bold,
                 letterSpacing: 1.5,
               ),
@@ -167,13 +169,14 @@ class _ChatScreenState extends State<ChatScreen> {
               margin: const EdgeInsets.only(right: 12.0),
               padding: const EdgeInsets.all(8.0),
               decoration: BoxDecoration(
-                color: Colors.white,
+                color: Colors.cyanAccent.withOpacity(0.2),
+                border: Border.all(color: Colors.cyanAccent),
                 borderRadius: BorderRadius.circular(4.0),
               ),
               child: const Text(
-                'TARS',
+                'AI',
                 style: TextStyle(
-                  color: Colors.black,
+                  color: Colors.cyanAccent,
                   fontWeight: FontWeight.bold,
                 ),
               ),
@@ -225,7 +228,7 @@ class _ChatScreenState extends State<ChatScreen> {
           IconButton(
             icon: Icon(
               _isListening ? Icons.mic : Icons.mic_none,
-              color: _isListening ? Colors.red : Colors.white,
+              color: _isListening ? Colors.red : Colors.cyanAccent,
             ),
             onPressed: _toggleListening,
           ),
@@ -241,7 +244,7 @@ class _ChatScreenState extends State<ChatScreen> {
             ),
           ),
           IconButton(
-            icon: const Icon(Icons.send),
+            icon: const Icon(Icons.send, color: Colors.cyanAccent),
             onPressed: () => _handleSubmitted(_controller.text),
           ),
         ],
